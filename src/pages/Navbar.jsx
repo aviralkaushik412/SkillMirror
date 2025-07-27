@@ -21,30 +21,45 @@ const Navbar = () => {
     <nav className="bg-gray-700">
       <div className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
-          {/* Logo */}
+          {/* Logo and nameee -------------------------------------------------------------------------*/}
           <div className="flex-shrink-0 flex items-center">
             <img src={mainLogo}
                     alt="Google logo"
                     className="w-20"></img>
             <span className="text-xl font-bold text-white">SkillMirror</span>
           </div>
-
-          {/* Desktop Menu */}
-          <div className="hidden md:ml-6 md:flex md:items-center md:space-x-4">
-            <Link to="/" className="text-white hover:text-amber-200 px-3 py-2 rounded-md text-sm font-medium">Home</Link>
+          {/* Desktop Menu When user is --------------------------------------------------- Logged In */}
+          <div className='hidden md:ml-6 md:flex md:items-center md:space-x-4'>
+            {user && (
+              <div>
+                <Link to="/" className="text-white hover:text-amber-200 px-3 py-2 rounded-md text-balance font-medium">Dashboard</Link>
+                <a href="#why-skillmirror" className="text-white hover:text-amber-200 px-3 py-2 rounded-md text-balance font-medium">Practice</a>
+                <a href='#working' className="text-white hover:text-amber-200 px-3 py-2 rounded-md text-balance font-medium">Streaks</a>
+                <a href='#contact-us' className="text-white hover:text-amber-200 px-3 py-2 rounded-md text-balance font-medium">Linked Accounts</a>
+                <a href='#contact-us' className="text-white hover:text-amber-200 px-3 py-2 rounded-md text-balance font-medium">Rankings</a>
+              </div>
+            )}
+          </div>
+          <div className='hidden md:ml-6 md:flex md:items-center md:space-x-4'>
             {!user && (
               <div>
-                <a href="#why-skillmirror" className="text-white hover:text-amber-200 px-3 py-2 rounded-md text-sm font-medium">Features</a>
-                <a href='#working' className="text-white hover:text-amber-200 px-3 py-2 rounded-md text-sm font-medium">About</a>
-                <a href='#contact-us' className="text-white hover:text-amber-200 px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+                <Link to="/" className="text-white hover:text-amber-200 px-3 py-2 rounded-md text-balance font-medium">Home</Link>
+                <a href="#why-skillmirror" className="text-white hover:text-amber-200 px-3 py-2 rounded-md text-balance font-medium">Features</a>
+                <a href='#working' className="text-white hover:text-amber-200 px-3 py-2 rounded-md text-balance font-medium">About</a>
+                <a href='#contact-us' className="text-white hover:text-amber-200 px-3 py-2 rounded-md text-balance font-medium">Contact</a>
 
               </div>
             )}
+          </div>
+          
+          {/* {functions when user is not logged in ------------------------------------------------------------------} */}
+          <div className="hidden md:ml-6 md:flex md:items-center md:space-x-4">
+            
 
-            {/* Dropdown */}
+            {/* Dropdown---------------------------------------------- */}
             {user && (
               <Menu as="div" className="relative">
-                <Menu.Button className="text-white hover:text-amber-200 px-3 py-2 rounded-md text-sm font-medium inline-flex items-center">
+                <Menu.Button className="text-white hover:text-amber-200 px-3 py-2 rounded-md text-balance font-medium inline-flex items-center">
                   Account
                   <ChevronDownIcon className="ml-1 h-4 w-4" aria-hidden="true" />
                 </Menu.Button>
@@ -62,7 +77,7 @@ const Navbar = () => {
                       {({ active }) => (
                         <Link
                           to="/profile"
-                          className={`${active ? 'bg-gray-100' : ''} block px-4 py-2 text-sm text-gray-700`}
+                          className={`${active ? 'bg-gray-100' : ''} block px-4 py-2 text-balance text-gray-700`}
                         >
                           Profile
                         </Link>
@@ -72,7 +87,7 @@ const Navbar = () => {
                       {({ active }) => (
                         <Link
                           to="/settings"
-                          className={`${active ? 'bg-gray-100' : ''} block px-4 py-2 text-sm text-gray-700`}
+                          className={`${active ? 'bg-gray-100' : ''} block px-4 py-2 text-balance text-gray-700`}
                         >
                           Settings
                         </Link>
@@ -82,7 +97,7 @@ const Navbar = () => {
                       {({ active }) => (
                         <button
                           onClick={handleLogout}
-                          className={`${active ? 'bg-gray-100' : ''} w-full text-left px-4 py-2 text-sm text-gray-700`}
+                          className={`${active ? 'bg-gray-100' : ''} w-full text-left px-4 py-2 text-balance text-gray-700`}
                         >
                           Logout
                         </button>
@@ -97,10 +112,10 @@ const Navbar = () => {
           {/* Auth Buttons - Desktop */}
           {!user && (
             <div className="hidden md:ml-4 md:flex md:items-center md:space-x-4">
-              <Link to="/signin" className="text-white hover:text-amber-200 px-3 py-2 rounded-md text-sm font-medium">
+              <Link to="/signin" className="text-white hover:text-amber-200 px-3 py-2 rounded-md text-balance font-medium">
                 Login
               </Link>
-              <Link to="/signup" className="bg-indigo-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-indigo-100 hover:text-black transition-colors">
+              <Link to="/signup" className="bg-indigo-600 text-white px-4 py-2 rounded-md text-balance font-medium hover:bg-indigo-100 hover:text-black transition-colors">
                 Get Started
               </Link>
             </div>
@@ -131,9 +146,9 @@ const Navbar = () => {
             <Link to="/" className="text-gray-100 hover:text-amber-400 block px-3 py-2 rounded-md text-base font-medium">Home</Link>
             {!user && (
               <div>
-                <Link to="/dsa" className="text-white hover:text-amber-200 px-3 py-2 rounded-md text-sm font-medium">Features</Link>
-                <Link to="/dsa" className="text-white hover:text-amber-200 px-3 py-2 rounded-md text-sm font-medium">About</Link>
-                <Link to="/dsa" className="text-white hover:text-amber-200 px-3 py-2 rounded-md text-sm font-medium">Contact</Link>
+                <Link to="/dsa" className="text-white hover:text-amber-200 px-3 py-2 rounded-md text-balance font-medium">Features</Link>
+                <Link to="/dsa" className="text-white hover:text-amber-200 px-3 py-2 rounded-md text-balance font-medium">About</Link>
+                <Link to="/dsa" className="text-white hover:text-amber-200 px-3 py-2 rounded-md text-balance font-medium">Contact</Link>
 
               </div>
             )}

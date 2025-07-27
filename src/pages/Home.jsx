@@ -37,13 +37,13 @@ const Home = () => {
         </p>
         <div className="space-x-4">
           <Link
-            to="/get-started"
+            to="/Signup"
             className="bg-white text-indigo-700 font-semibold px-6 py-2 rounded hover:bg-gray-200 hover:cursor-pointer"
           >
             Get Started
           </Link>
           <Link
-            to="/login"
+            to="/Signin"
             className="border border-white px-6 py-2 rounded hover:bg-white hover:text-indigo-700"
           >
             Login
