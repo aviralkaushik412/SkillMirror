@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from './Footer'; // We'll assume you're creating a separate Footer.jsx
 import image from '../assets/image.png'
-import Carousel  from './Better-Components/Carousel';
 import FAQSection from './Better-Components/FAQSection';
 import { ArrowUpIcon } from '@heroicons/react/24/solid';
 

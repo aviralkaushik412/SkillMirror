@@ -2,15 +2,11 @@ import React, { useState } from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 
 const DifficultyDonutChart = ({ solvedData }) => {
-  const defaultData = [
-    { name: 'Easy', value: 120, solved: 120, total: 150, color: '#4ade80' },
-    { name: 'Medium', value: 60, solved: 60, total: 100, color: '#fbbf24' },
-    { name: 'Hard', value: 15, solved: 15, total: 50, color: '#f87171' },
-  ];
 
-  const data = solvedData || defaultData;
+  const data = solvedData;
   const totalSolved = data.reduce((sum, item) => sum + item.solved, 0);
   const totalProblems = data.reduce((sum, item) => sum + item.total, 0);
+
 
   const [activeIndex, setActiveIndex] = useState(null);
 
@@ -21,32 +17,52 @@ const DifficultyDonutChart = ({ solvedData }) => {
   const onPieLeave = () => {
     setActiveIndex(null);
   };
+  const normalizedData = data.map(item => ({
+    ...item,
+    value: item.total > 0 ? (item.solved / item.total) * 100 : 0
+  }));
+  const backgroundData = [{ value: 100, color: '#374151' }];
 
   return (
     <div className="relative w-full h-80 bg-gray-800 rounded-xl p-4 shadow-md flex flex-col">
-      {/* Chart Area */}
       <div className="flex-1 relative">
         <ResponsiveContainer width="100%" height="100%">
           <PieChart>
             <Pie
-              data={data}
+              data={backgroundData}
               cx="50%"
               cy="50%"
               innerRadius="70%"
               outerRadius="90%"
-              paddingAngle={2}
+              paddingAngle={0}
+              dataKey="value"
+              stroke="none"
+            >
+              <Cell key="cell-background" fill="#374151" />
+            </Pie>
+
+            <Pie
+              data={normalizedData.filter(item => item.solved > 0)}
+              cx="50%"
+              cy="50%"
+              innerRadius="70%"
+              outerRadius="90%"
+              paddingAngle={0}
               dataKey="value"
               onMouseEnter={onPieEnter}
               onMouseLeave={onPieLeave}
+              startAngle={90}
+              endAngle={-270}
             >
-              {data.map((entry, index) => (
+              {normalizedData.filter(item => item.solved > 0).map((entry, index) => (
                 <Cell 
                   key={`cell-${index}`} 
                   fill={entry.color} 
-                  opacity={activeIndex === null || activeIndex === index ? 1 : 0.5}
+                  opacity={activeIndex === null || activeIndex === index ? 1 : 0.7}
                 />
               ))}
             </Pie>
+            
             <Tooltip 
               content={<CustomTooltip />}
               cursor={{ fill: 'transparent' }}
@@ -54,7 +70,6 @@ const DifficultyDonutChart = ({ solvedData }) => {
           </PieChart>
         </ResponsiveContainer>
         
-        {/* Center Label - Improved Alignment */}
         <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
           <div className="text-4xl font-bold text-white">{totalSolved}</div>
           <div className="text-sm text-gray-300 mt-1">Solved</div>
@@ -62,7 +77,6 @@ const DifficultyDonutChart = ({ solvedData }) => {
         </div>
       </div>
 
-      {/* Legend - Improved Layout */}
       <div className="mt-4 flex justify-center space-x-6">
         {data.map((item, index) => (
           <div key={index} className="flex flex-col items-center">

@@ -7,6 +7,7 @@ import mainLogo from '../assets/skillMirror-logo-test.png'
 import { auth } from '../firebase';
 
 
+
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { user, logout } = useAuth();
@@ -46,7 +47,7 @@ const Navbar = () => {
                 <a href="#why-skillmirror" className="text-white hover:text-amber-200 px-3 py-2 rounded-md text-balance font-medium">Practice</a>
                 <a href='#working' className="text-white hover:text-amber-200 px-3 py-2 rounded-md text-balance font-medium">Streaks</a>
                 <a href='#contact-us' className="text-white hover:text-amber-200 px-3 py-2 rounded-md text-balance font-medium">Linked Accounts</a>
-                <a href='#contact-us' className="text-white hover:text-amber-200 px-3 py-2 rounded-md text-balance font-medium">Rankings</a>
+                <Link to="/Rankings" className="text-white hover:text-amber-200 px-3 py-2 rounded-md text-balance font-medium">Rankings</Link>
               </div>
             )}
             {!user && (

@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { createUserWithEmailAndPassword, sendEmailVerification, updateProfile } from 'firebase/auth';
-import { auth } from '../../firebase';
+import { auth ,db } from '../../firebase';
 import { Link, useNavigate } from 'react-router-dom';
 import GoogleAuth from './GoogleAuth';
 import { ArrowPathIcon } from '@heroicons/react/24/outline';
+import { doc , setDoc } from 'firebase/firestore';
 
 const SignUp = () => {
   const [email, setMail] = useState('');
@@ -20,9 +21,36 @@ const SignUp = () => {
 
     try {
       const userCred = await createUserWithEmailAndPassword(auth, email, pass);
-      await updateProfile(userCred.user, { displayName: name });
-      await sendEmailVerification(userCred.user);
-      navigate('/signin', { state: { email } }); // Pass email to signin page
+      const user = userCred.user;
+      await updateProfile(user, { displayName: name });
+      await sendEmailVerification(user);
+      
+      await setDoc(doc(db, "userdata", user.uid), {
+        name,
+        email,
+        solved: 0,
+        streak: 0,
+        lastActive: new Date().toISOString(),
+        accuracy: 0,
+        streakRecord: 0,
+        solvedStats: {
+          easy: {
+            solved: 0,
+            total: 150,
+          },
+          medium: {
+            solved: 0,
+            total: 100,
+          },
+          hard: {
+            solved: 0,
+            total: 50,
+          }
+        },
+        questions: [],
+      });
+
+      navigate('/signin', { state: { email } });
     } catch (err) {
       setError(err.message);
       console.error('Signup Failed! ', err.message);
@@ -128,7 +156,7 @@ const SignUp = () => {
               <Link 
                 to="/signin" 
                 className="font-medium text-indigo-600 hover:text-indigo-500"
-                state={{ email }} // Pass email to signin page
+                state={{ email }}
               >
                 Sign in
               </Link>

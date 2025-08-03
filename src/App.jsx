@@ -7,6 +7,9 @@ import SignUp from './pages/Auth/Signup'
 import Dashboard from './pages/Dashboard'
 import PasswordReset from './pages/Auth/PasswordReset'
 import Navbar from './pages/Navbar'
+import Rankings from './pages/Dashboard-Components/Rankings'
+import Footer from './pages/Footer'
+
 
 const App = () => {
   const { user, loading } = useAuth();
@@ -26,9 +29,9 @@ const App = () => {
       <Route path="/PasswordReset" element={<PasswordReset />}/>
       <Route path="/SignUp" element={!user ? <SignUp /> : <Navigate to="/dashboard" />} />
       <Route path="/Home" element={!user ? <SignUp /> : <Navigate to="/dashboard" />} />
+      <Route path="/Rankings" element={user ? <Rankings /> : <Navigate to="/signin" />} />
     </Routes>
-
-
+    <Footer></Footer>
     </>
   )
 }
