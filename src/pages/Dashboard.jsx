@@ -2,12 +2,19 @@ import React, { useEffect, useState } from 'react';
 import UserStatsCard from './Dashboard-Components/UserStatsCard';
 import { useAuth } from '../context/AuthContext';
 import { fetchDailyQuestion } from '../context/fetchDailyQuestion';
+import { getFirestore, doc, getDoc } from "firebase/firestore";
+import  UseData from '../context/UseData';
+const db = getFirestore();
 
 const Dashboard = () => {
+  // console.log(questionData);
   const { user } = useAuth();
   const [questionTitle, setQuestionTitle] = useState('');
   const [questionId, setQuestionId] = useState('');
   const [questionUrl, setQuestionUrl] = useState('');
+  const { userData, loadingUserData } = UseData();
+  const accId = userData?.LCid; // 👈 instant access
+  console.log("LCid:", accId);
 
   useEffect(() => {
   const loadDailyQuestion = async () => {

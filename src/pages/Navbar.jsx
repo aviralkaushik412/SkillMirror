@@ -46,7 +46,7 @@ const Navbar = () => {
                 <Link to="/" className="text-white hover:text-amber-200 px-3 py-2 rounded-md text-balance font-medium">Dashboard</Link>
                 <a href="#why-skillmirror" className="text-white hover:text-amber-200 px-3 py-2 rounded-md text-balance font-medium">Practice</a>
                 <a href='#working' className="text-white hover:text-amber-200 px-3 py-2 rounded-md text-balance font-medium">Streaks</a>
-                <a href='#contact-us' className="text-white hover:text-amber-200 px-3 py-2 rounded-md text-balance font-medium">Linked Accounts</a>
+                <Link to='/LinkedAccounts' className="text-white hover:text-amber-200 px-3 py-2 rounded-md text-balance font-medium">Linked Accounts</Link>
                 <Link to="/Rankings" className="text-white hover:text-amber-200 px-3 py-2 rounded-md text-balance font-medium">Rankings</Link>
               </div>
             )}

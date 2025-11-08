@@ -9,6 +9,7 @@ import PasswordReset from './pages/Auth/PasswordReset'
 import Navbar from './pages/Navbar'
 import Rankings from './pages/Dashboard-Components/Rankings'
 import Footer from './pages/Footer'
+import LinkedAccounts from './pages/Dashboard-Components/LinkedAccounts'
 
 
 const App = () => {
@@ -24,6 +25,7 @@ const App = () => {
     <Navbar></Navbar>
     <Routes>
       <Route path="/" element={!user? <Home /> : <Navigate to={"/Home"}/>} />
+      <Route path="/LinkedAccounts" element={user? <LinkedAccounts /> : <Navigate to={"/signin"}/>} />
       <Route path="/signin" element={!user ? <Signin /> : <Navigate to="/dashboard" />} />
       <Route path="/dashboard" element={user ? <Dashboard /> : <Navigate to="/" />} />
       <Route path="/PasswordReset" element={<PasswordReset />}/>
