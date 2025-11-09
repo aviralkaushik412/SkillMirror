@@ -25,7 +25,7 @@ export const fetchDailyQuestion = async (uid) => {
     title_slug: data.title_slug,
     url: data.url,
   };
-  console.log(111);
+  // console.log(111);
 
   await setDoc(questionDocRef, questionData);
   return questionData;

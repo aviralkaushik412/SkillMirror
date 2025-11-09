@@ -1,42 +1,41 @@
 import { useEffect, useState } from "react";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, onSnapshot } from "firebase/firestore";
+import { db } from "../firebase";
 import { useAuth } from "./AuthContext";
-import { db } from "../firebase"; // make sure db = getFirestore(app)
 
-const UseData = () => {
+export default function useData() {
   const { user } = useAuth();
   const [userData, setUserData] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loadingUserData, setLoadingUserData] = useState(true);
 
   useEffect(() => {
     if (!user) {
       setUserData(null);
-      setLoading(false);
+      setLoadingUserData(false);
       return;
     }
 
-    const fetchData = async () => {
-      try {
-        const docRef = doc(db, "userdata", user.uid); // your Firestore collection
-        const finalData = await getDoc(docRef);
+    const docRef = doc(db, "userdata", user.uid);
 
-        if (finalData.exists()) {
-          setUserData(finalData.data());
+    // ✅ Real-time listener (auto-updates on Firestore changes)
+    const unsubscribe = onSnapshot(
+      docRef,
+      (snapshot) => {
+        if (snapshot.exists()) {
+          setUserData(snapshot.data());
         } else {
-          console.warn("⚠️ No such document found for this user!");
           setUserData(null);
         }
-      } catch (error) {
-        console.error("🔥 Error fetching user data:", error);
-      } finally {
-        setLoading(false);
+        setLoadingUserData(false);
+      },
+      (error) => {
+        console.error("Error fetching user data:", error);
+        setLoadingUserData(false);
       }
-    };
+    );
 
-    fetchData();
+    return () => unsubscribe(); // cleanup
   }, [user]);
 
-  return { userData, loading };
-};
-
-export default UseData;
+  return { userData, loadingUserData };
+}

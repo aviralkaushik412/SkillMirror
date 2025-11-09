@@ -1,0 +1,44 @@
+[
+  {
+    "id": "1824674544",
+    "title": "Maximum Path Score in a Grid",
+    "titleSlug": "maximum-path-score-in-a-grid",
+    "timestamp": 1762657771,
+    "status": 10,
+    "statusDisplay": "Accepted",
+    "lang": "cpp",
+    "url": "/submissions/detail/1824674544/",
+    "langName": "C++",
+    "runtime": "702 ms",
+    "isPending": "Not Pending",
+    "memory": "504.6 MB"
+  },
+  {
+    "id": "1824674545",
+    "title": "Two Sum",
+    "titleSlug": "two-sum",
+    "timestamp": 1762657771,
+    "status": 10,
+    "statusDisplay": "Accepted",
+    "lang": "cpp",
+    "url": "/submissions/detail/1824674545/",
+    "langName": "C++",
+    "runtime": "10 ms",
+    "isPending": "Not Pending",
+    "memory": "40.5 MB"
+  },
+  {
+    "id": "1824674546",
+    "title": "Add Two Numbers",
+    "titleSlug": "add-two-numbers",
+    "timestamp": 1762577771,
+    "status": 10,
+    "statusDisplay": "Accepted",
+    "lang": "cpp",
+    "url": "/submissions/detail/1824674546/",
+    "langName": "C++",
+    "runtime": "60 ms",
+    "isPending": "Not Pending",
+    "memory": "44 MB"
+  }
+]
