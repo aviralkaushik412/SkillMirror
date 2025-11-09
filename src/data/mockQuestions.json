@@ -1,0 +1,22 @@
+{
+  "questions": [
+    {
+      "id": "q1",
+      "title": "Sum of Two Numbers",
+      "difficulty": "Easy",
+      "description": "Given two integers, return their sum.",
+      "codeSnippet": "// add two numbers\nfunction add(a, b) {\n  return a + b;\n}",
+      "sampleInput": "1 2",
+      "sampleOutput": "3"
+    },
+    {
+      "id": "q2",
+      "title": "Maximum Path Score in a Grid",
+      "difficulty": "Medium",
+      "description": "Given a grid of integers, compute the maximum path score from top-left to bottom-right.",
+      "codeSnippet": "// placeholder for path score algorithm\nfunction maxPath(grid) {\n  // ...\n}",
+      "sampleInput": "[[1,2],[3,4]]",
+      "sampleOutput": "10"
+    }
+  ]
+}
