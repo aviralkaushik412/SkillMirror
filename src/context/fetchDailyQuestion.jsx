@@ -3,12 +3,12 @@ import { db } from '../firebase';
 
 const getTodayDate = () => {
   const today = new Date();
-  return today.toISOString().split('T')[0]; // "YYYY-MM-DD"
+  return today.toISOString().split('T')[0];
 };
 
 export const fetchDailyQuestion = async (uid) => {
   const today = getTodayDate();
-  const questionDocRef = doc(db, 'users', uid, 'dailyQuestions', today);
+  const questionDocRef = doc(db, 'dailyQuestions', today);
 
   const questionSnap = await getDoc(questionDocRef);
   if (questionSnap.exists()) {

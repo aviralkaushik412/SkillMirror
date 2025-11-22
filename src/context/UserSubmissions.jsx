@@ -3,6 +3,7 @@ import { doc, getDoc, setDoc, updateDoc, increment } from "firebase/firestore";
 import { db } from "../firebase";
 import { useAuth } from "../context/AuthContext";
 import sampleSubmissions from "../data/sample.json"; // mock data
+import {fetchDailyQuestion} from "../context/fetchDailyQuestion";
 
 const formatDate = (unixTimestamp) =>
   new Date(unixTimestamp * 1000).toISOString().split("T")[0];
@@ -11,6 +12,20 @@ const UserSubmissions = () => {
   const { user } = useAuth();
   const [found, setFound] = useState(false);
   const [loadingSubs, setLoadingSubs] = useState(true);
+  const [question , setQuestion] = useState("null");
+  // console.log(question);
+  useEffect(() => { 
+    const load = async () => {
+      try{
+        const q = await fetchDailyQuestion();
+        setQuestion(q.title);
+        // console.log(q.title);
+      }catch(error){
+        console.error("Error loading daily question:", error);
+      };
+    };
+    load(); 
+  },[]);
 
   useEffect(() => {
     const checkAndSaveStatus = async () => {
@@ -23,7 +38,7 @@ const UserSubmissions = () => {
 
       try {
         const today = new Date().toISOString().split("T")[0];
-        const targetTitle = "Maximum Path Score in a Grid";
+        const targetTitle = question;
         const docRef = doc(db, "leetcodeStatus", user.uid);
 
         console.log("📡 Checking Firestore...");
@@ -78,7 +93,7 @@ const UserSubmissions = () => {
         }
 
         // ✅ Check submissions
-        console.log("🔍 Checking submissions...");
+        console.log(`🔍 Checking submissions for ${question}`);
         const submissions = sampleSubmissions;
         let foundFlag = false;
 

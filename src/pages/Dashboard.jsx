@@ -53,12 +53,12 @@ const Dashboard = () => {
             </div>
 
             {/* Ongoing Series Card */}
-            <div className="bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
-              <div className="flex items-center mb-4">
+            {/* <div className="bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300"> */}
+              {/* <div className="flex items-center mb-4">
                 <VideoCameraIcon className="h-6 w-6 text-indigo-400 mr-3" />
                 <h2 className="text-xl font-semibold text-white">Ongoing Series</h2>
-              </div>
-              <div className="bg-gray-700 rounded-lg p-4 border border-gray-600">
+              </div> */}
+              {/* <div className="bg-gray-700 rounded-lg p-4 border border-gray-600">
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-white font-medium">Striver Graph Series</p>
@@ -76,8 +76,8 @@ const Dashboard = () => {
                 <div className="mt-3 w-full bg-gray-600 rounded-full h-2">
                   <div className="bg-green-500 h-2 rounded-full" style={{ width: '65%' }}></div>
                 </div>
-              </div>
-            </div>
+              </div> */}
+            {/* </div> */}
 
             {/* Daily Problems Card */}
             <div className="bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
