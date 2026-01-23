@@ -140,7 +140,7 @@ const Home = () => {
         <ArrowUpIcon className="h-4 w-4" />
       </a>
     </div>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

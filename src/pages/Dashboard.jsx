@@ -81,12 +81,10 @@ const Dashboard = () => {
 
             {/* Daily Problems Card */}
             <div className="bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
-              <div className="flex items-center mb-4">
+              {/* <div className="flex items-center mb-4">
                 <FireIcon className="h-6 w-6 text-amber-400 mr-3" />
                 <h2 className="text-xl font-semibold text-white">Daily Challenges</h2>
               </div>
-              
-              {/* POTD Section */}
               <div className="bg-gray-700 rounded-lg p-4 border border-gray-600 mb-4">
                 <div className="flex items-center mb-3">
                   <CubeIcon className="h-5 w-5 text-amber-300 mr-2" />
@@ -102,13 +100,13 @@ const Dashboard = () => {
                     <span className="text-white">GeeksforGeeks</span>
                   </a>
                 </div>
-              </div>
+              </div> */}
 
               {/* Daily Problem Section */}
               <div className="bg-gray-700 rounded-lg p-4 border border-gray-600">
                 <div className="flex items-center mb-3">
-                  <CalendarIcon className="h-5 w-5 text-indigo-400 mr-2" />
-                  <h3 className="text-lg font-medium text-white">Daily Problem</h3>
+                  <CubeIcon className="h-5 w-5 text-amber-300 mr-2" />
+                  <h3 className="text-lg font-medium text-white">Problem of the Day</h3>
                 </div>
                 
                 {questionTitle ? (
